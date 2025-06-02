@@ -11,13 +11,6 @@
       ./home-manager.nix
     ];
 
-#  environment.shellAliases = {
-#    yt = "/home/tevin/hd/Scripts/download";
-#    comprimir = "/home/tevin/hd/Scripts/comprimir_video";
-#    tirar_lixo = "nix-store --gc";
-#    atualizar_sistema = "sudo nixos-rebuild switch";
-#  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,13 +24,11 @@
   fileSystems."/home/tevin/hd" = {
     device = "/dev/disk/by-uuid/8a3f4f71-8a10-4611-8746-56f6616468d6";
     fsType = "xfs";
-    # options = [ "uid=1000" "gid=1000" "dmask=007" "fmask=117" ];
   };
 
 
   boot.initrd.luks.devices."luks-2e7c6ad6-a65f-425b-937b-0c280fe7dfd6".device = "/dev/disk/by-uuid/2e7c6ad6-a65f-425b-937b-0c280fe7dfd6";
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.gc.automatic = true;
   nix.gc.dates = "13:00";
@@ -103,6 +94,7 @@
     kdepim-runtime # Unneeded if you use Thunderbird, etc.
     konsole # Comment out this line if you use KDE's default terminal app
     oxygen
+    elisa
   ];
 
   # Configure keymap in X11

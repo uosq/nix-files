@@ -20,6 +20,8 @@ in
       mpv
       yt-dlp
       ffmpeg-full
+      steamtinkerlaunch
+      desktop-file-utils
     ];
 
     home.shellAliases = {
@@ -29,8 +31,21 @@ in
       atualizar_sistema = "sudo nixos-rebuild switch";
     };
 
+    # mpd
+    services.mpd = {
+      enable = true;
+      musicDirectory = "/home/tevin/hd/Musica";
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "pipewire output"
+        }
+      '';
+    };
+
     programs.bash.enable = true;
     programs.firefox.enable = true;
+    programs.ncmpcpp.enable = true;
   
     # The state version is required and should stay at the version you
     # originally installed.
