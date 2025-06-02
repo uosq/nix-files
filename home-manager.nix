@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
 in
 {
   imports =
@@ -22,6 +22,7 @@ in
       ffmpeg-full
       steamtinkerlaunch
       desktop-file-utils
+      libreoffice-qt-fresh
     ];
 
     home.shellAliases = {
@@ -43,10 +44,18 @@ in
       '';
     };
 
+    services.mpd-mpris.enable = true;
     programs.bash.enable = true;
     programs.firefox.enable = true;
     programs.ncmpcpp.enable = true;
   
+    # alacritty
+    xdg.configFile."alacritty/alacritty.toml".text = ''
+    [window]
+    opacity = 0.5
+    blur = true
+    '';
+
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "25.05";
