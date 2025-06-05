@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 	home.packages = with pkgs; [
@@ -15,6 +15,6 @@
 		libreoffice-qt-fresh
 		kde-rounded-corners
 		git
-		pkgs.linuxKernel.packages.linux_6_14.xpadneo
+		linuxKernel.packages.linux_6_14.xpadneo
 	];
 }

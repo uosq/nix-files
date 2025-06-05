@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home.nix
+#      ./home.nix
       ./configs/boot.nix
       ./configs/kernel.nix
       ./configs/filesystem.nix
@@ -53,6 +53,16 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+  ];
+
+  environment.variables.EDITOR = "nano";
 
   # perfeitamente normal deixar 25.05
   system.stateVersion = "25.05";

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, 	inputs, ... }:
 
 {
 	# Enable the X11 windowing system.
@@ -16,5 +16,11 @@
 		konsole
 		oxygen
 		elisa
+	];
+
+	# tema nórdico
+	environment.systemPackages = [
+		pkgs.nordic
+		pkgs.papirus-nord
 	];
 }
