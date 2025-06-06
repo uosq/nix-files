@@ -22,6 +22,8 @@
 	./configs/teclado.nix
 	./configs/usuarios.nix
 	./configs/nano.nix
+	./configs/gpg.nix
+	./configs/ssh.nix
 
 	# This includes the Lix NixOS module in your configuration along with the
 	# matching version of Lix itself.

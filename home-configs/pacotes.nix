@@ -16,5 +16,6 @@
 		git
 		linuxKernel.packages.linux_6_14.xpadneo
 		r2modman
+#		kdePackages.kgpg
 	];
 }

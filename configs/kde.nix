@@ -24,5 +24,6 @@
 	config.environment.systemPackages = [
 		pkgs.nordic
 		pkgs.papirus-nord
+		pkgs.kdePackages.kgpg
 	];
 }
