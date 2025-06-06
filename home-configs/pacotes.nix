@@ -2,7 +2,6 @@
 
 {
 	home.packages = with pkgs; [
-		kdePackages.kate
 		fastfetch
 		alacritty
 		prismlauncher
@@ -16,5 +15,6 @@
 		kde-rounded-corners
 		git
 		linuxKernel.packages.linux_6_14.xpadneo
+		r2modman
 	];
 }

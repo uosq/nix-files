@@ -5,65 +5,65 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-#      ./home.nix
-      ./configs/boot.nix
-      ./configs/kernel.nix
-      ./configs/filesystem.nix
-      ./configs/network.nix
-      ./configs/localizacao.nix
-      ./configs/bluetooth.nix
-      ./configs/steam.nix
-      ./configs/nvidia.nix
-      ./configs/kde.nix
-      ./configs/cups.nix
-      ./configs/pipewire.nix
-      ./configs/teclado.nix
-      ./configs/usuarios.nix
+	imports =
+	[ # Include the results of the hardware scan.
+	./hardware-configuration.nix
+	./configs/boot.nix
+	./configs/kernel.nix
+	./configs/filesystem.nix
+	./configs/network.nix
+	./configs/localizacao.nix
+	./configs/bluetooth.nix
+	./configs/steam.nix
+	./configs/nvidia.nix
+	./configs/kde.nix
+	./configs/cups.nix
+	./configs/pipewire.nix
+	./configs/teclado.nix
+	./configs/usuarios.nix
+	./configs/nano.nix
 
-      # This includes the Lix NixOS module in your configuration along with the
-      # matching version of Lix itself.
-      #
-      # The sha256 hashes were obtained with the following command in Lix (n.b.
-      # this relies on --unpack, which is only in Lix and CppNix > 2.18):
-      # nix store prefetch-file --name source --unpack https://git.lix.systems/lix-project/lix/archive/2.93.0.tar.gz
-      #
-      # Note that the tag (e.g. 2.93.0) in the URL here is what determines
-      # which version of Lix you'll wind up with.
-      (let
-        module = fetchTarball {
-          name = "source";
-          url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-          sha256 = "sha256-11R4K3iAx4tLXjUs+hQ5K90JwDABD/XHhsM9nkeS5N8=";
-        };
-        lixSrc = fetchTarball {
-          name = "source";
-          url = "https://git.lix.systems/lix-project/lix/archive/2.93.0.tar.gz";
-          sha256 = "sha256-hsFe4Tsqqg4l+FfQWphDtjC79WzNCZbEFhHI8j2KJzw=";
-        };
+	# This includes the Lix NixOS module in your configuration along with the
+	# matching version of Lix itself.
 
-        in import "${module}/module.nix" { lix = lixSrc; }
-      )
-    ];
+	# The sha256 hashes were obtained with the following command in Lix (n.b.
+	# this relies on --unpack, which is only in Lix and CppNix > 2.18):
+	# nix store prefetch-file --name source --unpack https://git.lix.systems/lix-project/lix/archive/2.93.0.tar.gz
 
-  nix.gc.automatic = true;
-  nix.gc.dates = "13:00";
+	# Note that the tag (e.g. 2.93.0) in the URL here is what determines
+	# which version of Lix you'll wind up with.
+	(let
+	module = fetchTarball {
+        	name = "source";
+		url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+		sha256 = "sha256-11R4K3iAx4tLXjUs+hQ5K90JwDABD/XHhsM9nkeS5N8=";
+	};
+	lixSrc = fetchTarball {
+		name = "source";
+		url = "https://git.lix.systems/lix-project/lix/archive/2.93.0.tar.gz";
+		sha256 = "sha256-hsFe4Tsqqg4l+FfQWphDtjC79WzNCZbEFhHI8j2KJzw=";
+	};
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+	in import "${module}/module.nix" { lix = lixSrc; }
+	)
+	];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+	nix.gc.automatic = true;
+	nix.gc.dates = "13:00";
 
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-  ];
+	# Allow unfree packages
+	nixpkgs.config.allowUnfree = true;
 
-  environment.variables.EDITOR = "nano";
+	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # perfeitamente normal deixar 25.05
-  system.stateVersion = "25.05";
+	environment.systemPackages = with pkgs; [
+		git
+		vim
+		wget
+	];
+
+	environment.variables.EDITOR = "nano";
+
+	# perfeitamente normal deixar 25.05
+	system.stateVersion = "25.05";
 }
